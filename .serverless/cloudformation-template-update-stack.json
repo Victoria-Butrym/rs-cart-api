@@ -162,7 +162,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/nest-rds-cloudx-cart-api/dev/1684779422568-2023-05-22T18:17:02.568Z/nest-rds-cloudx-cart-api.zip"
+          "S3Key": "serverless/nest-rds-cloudx-cart-api/dev/1684953431968-2023-05-24T18:37:11.968Z/nest-rds-cloudx-cart-api.zip"
         },
         "Handler": "dist/main.handler",
         "Runtime": "nodejs14.x",
@@ -180,14 +180,14 @@
         "MainLogGroup"
       ]
     },
-    "MainLambdaVersionXacKnU2IipXp8PxrRafSft6bkIMfl7nbQnWI8e7s": {
+    "MainLambdaVersionyrdpSbfFtbMgZFXyGJm3DHJxgLMI1K5JcyU5SeOw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MainLambdaFunction"
         },
-        "CodeSha256": "YX8pqjuXBq7ikkGjIB4fKBysFK+ty42kg5yKahTuY4A="
+        "CodeSha256": "QSCf297qrsFIWBWZCAoR7f42iEATAPW0zyfnmDiGI4Y="
       }
     },
     "ApiGatewayRestApi": {
@@ -312,7 +312,7 @@
         "MainLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1684779398902": {
+    "ApiGatewayDeployment1684953405819": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -375,7 +375,7 @@
     "MainLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MainLambdaVersionXacKnU2IipXp8PxrRafSft6bkIMfl7nbQnWI8e7s"
+        "Ref": "MainLambdaVersionyrdpSbfFtbMgZFXyGJm3DHJxgLMI1K5JcyU5SeOw"
       },
       "Export": {
         "Name": "sls-nest-rds-cloudx-cart-api-dev-MainLambdaFunctionQualifiedArn"

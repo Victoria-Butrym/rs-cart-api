@@ -9,6 +9,7 @@ import SnakeNamingStrategy from 'typeorm-naming-strategy';
 
 import { DataSource } from 'typeorm';
 import { Carts } from './database/entities/carts.entity';
+import { CartInfo } from './database/entities/cart-info.entity';
 
 @Module({
   imports: [
@@ -19,11 +20,11 @@ import { Carts } from './database/entities/carts.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'cloud_x',
-      entities: [Carts],
+      entities: [Carts, CartInfo],
       logging: true,
       namingStrategy: new SnakeNamingStrategy(),
       // synchronize: true,
-      // autoLoadEntities: true,
+      autoLoadEntities: true,
   }),
     CartModule,
     OrderModule,
@@ -34,5 +35,5 @@ import { Carts } from './database/entities/carts.entity';
   providers: [],
 })
 export class AppModule {
-  // constructor(private dataSource: DataSource) {}
+  constructor(private dataSource: DataSource) {}
 }
