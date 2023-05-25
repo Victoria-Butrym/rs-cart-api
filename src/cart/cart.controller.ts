@@ -9,41 +9,71 @@ export class CartController {
 
   @Get()
   async findAllCarts() {
-    const carts = await this.cartService.findAllCarts();
+    try {
+      const carts = await this.cartService.findAllCarts();
 
-    return {
-      statusCode: HttpStatus.OK,
-      data: { carts }
+      return carts 
+        ? { statusCode: HttpStatus.OK, data: { carts } }
+        : { statusCode: HttpStatus.NOT_FOUND, error: 'not found!' }
+
+    } catch ({ message }) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        error: message
+      }
     }
   }
 
   @Get(':id')
   async findCardById(@Param() params: any) {
-    const { id } = params;
-    const cart = await this.cartService.findCartById(id);
-    return {
-      statusCode: HttpStatus.OK,
-      data: { cart }
+    try {
+      const { id } = params;
+      const cart = await this.cartService.findCartById(id);
+
+      return cart
+        ? { statusCode: HttpStatus.OK, data: { cart } }
+        : { statusCode: HttpStatus.NOT_FOUND, error: 'not found!' }
+
+    } catch ({ message }) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        error: message
+      }
     }
   }
 
   @Post()
   async createCart(@Body() body: any) {
-      const cart = await this.cartService.create(JSON.parse(body));
+    try {
+      const response = await this.cartService.create(JSON.parse(body));
+
+      return response
+        ? { statusCode: HttpStatus.OK, data: response }
+        : { statusCode: HttpStatus.BAD_REQUEST, error: 'bad request!' }
+
+    } catch ({ message }) {
       return {
-          statusCode: HttpStatus.OK,
-          body: { cart }
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        error: `creation failed! ${message}`
       }
+    }
   }
 
   @Delete(':id')
   async deleteCart(@Param() params: any) {
-    const { id } = params;
-    await this.cartService.deleteCart(id);
+    try {
+      const { id } = params;
+      await this.cartService.deleteCart(id);
 
-    return {
-      statusCode: HttpStatus.OK,
-      data: 'deleted successfully'
+      return {
+        statusCode: HttpStatus.OK,
+        data: 'deleted successfully'
+      }
+    } catch ({ message }) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        error: message
+      }
     }
   }
 }

@@ -1,9 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinTable, JoinColumn, OneToMany, ManyToOne } from "typeorm"
-import { CartInfo } from "./cart-info.entity";
-// import { CartInfo } from './cart-info.entity';
-// import { ECartStatus } from '../../cart/models/cart.model';
-// import { Orders } from './orders.entity';
-// import { Users } from './user.entity';
+import { CartItems } from "./cart-items.entity";
 
 enum CartStatus {
     ORDERED = 'ORDERED',
@@ -27,7 +23,7 @@ export class Carts {
     @Column({ type: 'enum', enum: CartStatus })
     status: CartStatus;
 
-    // @OneToOne(() => CartInfo, (cartInfo) => cartInfo.cart_id, { onDelete: "CASCADE" })
-    // @JoinColumn({ name: 'id', referencedColumnName: 'cart_id' })
-    // cart_info: CartInfo;
+    @OneToOne(() => CartItems, (cartInfo) => cartInfo.cart_id, { onDelete: "CASCADE" })
+    @JoinTable()
+    cart_info: CartItems;
 }

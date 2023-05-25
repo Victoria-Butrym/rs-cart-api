@@ -4,6 +4,7 @@ useDotenv: true
 
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
 
 provider:
   name: aws
@@ -11,6 +12,7 @@ provider:
   region: us-east-1
   profile: sandx
   stage: dev
+  timeout: 30
 
 functions:
   main:

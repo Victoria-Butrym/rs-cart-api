@@ -9,21 +9,21 @@ import SnakeNamingStrategy from 'typeorm-naming-strategy';
 
 import { DataSource } from 'typeorm';
 import { Carts } from './database/entities/carts.entity';
-import { CartInfo } from './database/entities/cart-info.entity';
+import { CartItems } from './database/entities/cart-items.entity';
+import * as process from 'process';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'rds-cloud-x-database.cg2yqpysptpk.us-east-1.rds.amazonaws.com',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'cloud_x',
-      entities: [Carts, CartInfo],
+      host: process.env.DATABASE_HOST,
+      port: +process.env.PORT,
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
+      entities: [Carts, CartItems],
       logging: true,
       namingStrategy: new SnakeNamingStrategy(),
-      // synchronize: true,
       autoLoadEntities: true,
   }),
     CartModule,

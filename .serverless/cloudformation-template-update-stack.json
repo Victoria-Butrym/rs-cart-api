@@ -162,13 +162,22 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/nest-rds-cloudx-cart-api/dev/1684953431968-2023-05-24T18:37:11.968Z/nest-rds-cloudx-cart-api.zip"
+          "S3Key": "serverless/nest-rds-cloudx-cart-api/dev/1685037432014-2023-05-25T17:57:12.014Z/nest-rds-cloudx-cart-api.zip"
         },
         "Handler": "dist/main.handler",
         "Runtime": "nodejs14.x",
         "FunctionName": "nest-rds-cloudx-cart-api-dev-main",
         "MemorySize": 1024,
-        "Timeout": 6,
+        "Timeout": 30,
+        "Environment": {
+          "Variables": {
+            "DATABASE_HOST": "rds-cloud-x-database.cg2yqpysptpk.us-east-1.rds.amazonaws.com",
+            "DATABASE_PORT": "5432",
+            "DATABASE_NAME": "cloud_x",
+            "DATABASE_USERNAME": "postgres",
+            "DATABASE_PASSWORD": "postgres"
+          }
+        },
         "Role": {
           "Fn::GetAtt": [
             "IamRoleLambdaExecution",
@@ -180,14 +189,14 @@
         "MainLogGroup"
       ]
     },
-    "MainLambdaVersionyrdpSbfFtbMgZFXyGJm3DHJxgLMI1K5JcyU5SeOw": {
+    "MainLambdaVersionU11TSGZywvs6FBV0RdLfUOHEpjwmV1WrRuSdkdAw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MainLambdaFunction"
         },
-        "CodeSha256": "QSCf297qrsFIWBWZCAoR7f42iEATAPW0zyfnmDiGI4Y="
+        "CodeSha256": "gqv/d21kWT/XdFiwrIFIjS2qxoC/F7o6RfAWc6zEa5c="
       }
     },
     "ApiGatewayRestApi": {
@@ -312,7 +321,7 @@
         "MainLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1684953405819": {
+    "ApiGatewayDeployment1685037407267": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -375,7 +384,7 @@
     "MainLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MainLambdaVersionyrdpSbfFtbMgZFXyGJm3DHJxgLMI1K5JcyU5SeOw"
+        "Ref": "MainLambdaVersionU11TSGZywvs6FBV0RdLfUOHEpjwmV1WrRuSdkdAw"
       },
       "Export": {
         "Name": "sls-nest-rds-cloudx-cart-api-dev-MainLambdaFunctionQualifiedArn"
